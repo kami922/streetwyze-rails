@@ -1,0 +1,21 @@
+
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
+<h1>
+Main page
+</h1>
+
+<%= Current.user.nil? %>
+
+<%# <% if Current.user %>
+<%# Logged in as: <%= Current.user.username %>
+<%# Logged in as : <%= @user.username %>
+<%# <%= link_to "Log out", logout_path, method: :delete %>
+
+<%# <%= button_to "Log out", logout_path, method: :delete %>
+
+ <%# <% end %>
+
+

@@ -1,0 +1,35 @@
+<h1> New Survey </h1>
+
+<div class="container" >
+
+<div class="col-12" >
+<%= form_with model:@survey ,url: survey_path do |form| %>
+
+<div class="mb-3">
+<%= form.label :Survey_name %>
+<%= form.text_field :title  , class:"form-control"%>
+</div>
+
+<div class = "mb-3">
+<%= form.label :Survey_Script %>
+<%= form.text_field :script , class:"form-control" %>
+</div>
+
+<div class="mb-3">
+<button class="btn btn-primary" > Add Question  </button>
+</div>
+
+
+<div class = "mb-3">
+<%= form.submit "Publish",class:"btn btn-primary btngry" %>
+<%= link_to "Cancle",root_path, class:"btn btn-primary btngry" %>
+</div>
+
+</div>
+
+</div>
+
+
+<% end %>
+
+

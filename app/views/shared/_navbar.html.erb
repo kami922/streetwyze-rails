@@ -1,0 +1,50 @@
+<%# <nav class="navbar navbar-expand-lg navbar-light bg-light" style = "background-color: #8c8c8c; color:black; " > %>
+<nav class="navbar navbar-expand-lg" style = "background-color: #8c8c8c;" >
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Survey App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%# <a class="nav-link active" aria-current="page" href="#">Home</a> %>
+          <%= link_to "Home",root_path,class:"nav-link active" %>
+        </li>
+
+<%# <!-->Survery dropdown <--> %>
+<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Surveys
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%# <li><a class="dropdown-item" href="#">Create Survey</a></li> %>
+            <%= link_to "Create Survey" , survey_path, class:"dropdown-item" %>
+            <li><a class="dropdown-item" href="#">Survey Results</a></li>
+          </ul>
+        </li>
+         <% if Current.user %>
+          <li class="nav-item mx-3 mt-2 fw-bold">
+            Logged in as: <%= Current.user.username %>
+      </li>
+        <%= button_to "Log out", logout_path, method: :delete , class:"btn btn-primary"%>
+
+          <%= link_to "Profile", edit_password_path , class:"nav-link active"%>
+        <% else %>
+
+        <li class="nav-item">
+          <%# <a class="nav-link" href="#">Link</a> %>
+          <%= link_to "Sign in", signin_path ,class:'nav-link active'%>
+        </li>
+        <li class="nav-item">
+
+        </li>
+        <li class="nav-item">
+          <%# <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> %>
+          <%= link_to "Sign up",signup_path, class:"nav-link active" %>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

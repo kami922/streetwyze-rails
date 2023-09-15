@@ -1,0 +1,39 @@
+<h1> Edit Profile </h2>
+
+<%= form_with model: Current.user,url: edit_password_path do |form| %>
+<% if form.object.errors.any? %>
+<div class="alert alert-danger">
+<% form.object.errors.full_messages.each do |message| %>
+<div><%= message %> <% end %>
+</div>
+
+</div>
+<% end %>
+<div class="mb-3">
+<%= form.label :email %>
+<%= form.text_field :email ,class:"form-control", disabled: true %>
+</div>
+
+<div class="mb-3" >
+<%= form.label :password %>
+<%= form.password_field :password ,class:"form-control"%>
+</div>
+
+<div class="mb-3" >
+<%= form.label :username %>
+<%= form.text_field :username ,class:"form-control"%>
+</div>
+
+<div class="mb-3" >
+<%= form.label :password_confirmation %>
+<%= form.password_field :password_confirmation ,class:"form-control" %>
+</div>
+
+<div class="mb-3" >
+<%= form.submit "Sign up"  ,class: "btn btn-primary" %>
+ <%= link_to "Cancle",root_path, class:"btn btn-primary" %>
+</div>
+
+
+<% end %>
+
