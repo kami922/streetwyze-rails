@@ -67,3 +67,7 @@ gem "stripe", "~> 9.2"
 gem "dotenv-rails", "~> 2.8"
 
 gem "cocoon"
+
+gem "bootstrap", "~> 5.3"
+
+gem 'popper_js', '~> 2.11.8'

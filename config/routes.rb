@@ -13,8 +13,15 @@ Rails.application.routes.draw do
   get "survey", to: "surveys#new"
   post "survey", to: "surveys#create"
 
+  get "new_release",to: 'surveys#new_release', as: :new_release
+
   delete "logout", to: "sessions#destroy"
+
+
+  post "asset", to: "main#create"
 
   root to: "main#index"
 
 end
+
+

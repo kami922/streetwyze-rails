@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+
+
+.modal {
+  display: none;
+}
+
+.modal.is-open {
+  display: block;
+}

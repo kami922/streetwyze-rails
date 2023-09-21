@@ -3,11 +3,86 @@
   <%= flash[:notice] %>
 <% end %>
 
+<!--
 <h1>
 Main page
 </h1>
+-->
 
-<%= Current.user.nil? %>
+<%#= Current.user.nil? %>
+
+<!-- Button trigger modal -->
+<div class="container">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Create Asset
+</button>
+</div>
+<!-- Asset  Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with model: @asset, url: asset_path do |f| %>
+
+        <div class="my-3">
+        <%= f.label :place_name %>
+        <%= f.text_field :place_name , placeholder:"Enter place name" ,class:"form-control"%>
+        </div>
+
+        <div class="my-3">
+          <%= f.label :address %>
+          <%= f.text_field :address ,placeholder:"Enter address",class:"form-control"%>
+        </div>
+
+        <!-- type of stuff radio button -->
+         <div class="my-3">
+          <p>I would like to share:</p>
+          <%= f.radio_button :stuff, "Good" %>
+          <%= f.label :stuff, "Good" %><br>
+          <%= f.radio_button :stuff, "Fix" %>
+          <%= f.label :stuff, "Fix" %><br>
+          <%= f.radio_button :stuff, "Bad" %>
+          <%= f.label :stuff, "Bad" %>
+        </div>
+
+        <!-- rating integer field scale 1 to 5 -->
+         <div class="my-3">
+          <%= f.label :rating %>
+          <%= f.select :rating, (1..5), { include_blank: "Select a rating" }, class: "form-control" %>
+        </div>
+
+        <div class="my-3">
+          <%= f.label :category %>
+          <%= f.select :category, ["Art", "Business", "Child Care", "Education", "Environment", "Food", "Health", "Housing", "Industry", "Safety", "Transportation"], { include_blank: "Select a category" }, class: "form-control" %>
+        </div>
+
+        <div class="my-3">
+          <%= f.label :description %>
+          <%= f.text_area :description,class:"form-control" %>
+        </div>
+
+        <div class="my-3">
+          <%= f.label :Media %>
+          <%= f.file_field :files, multiple: true , class:"form-control"%>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <div class="my-3">
+          <%= f.submit "submit", class:"btn btn-primary" %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 <%# <% if Current.user %>
 <%# Logged in as: <%= Current.user.username %>

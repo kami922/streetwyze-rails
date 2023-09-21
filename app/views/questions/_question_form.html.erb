@@ -1,0 +1,21 @@
+<% form_with model:@question, url:questions do |form| %>
+
+<% if form.object.errors.any? %>
+  <div class="alert alert-danger">
+    <% form.object.errors.full_messages.each do |message| %>
+      <div><%= message %> <% end %> </div>
+  </div>
+<% end %>
+
+  <div class="mb-3">
+    <%= form.label :question %>
+    <%= form.text_field :statement,  class:"form-control", placeholder: "enter your question" %>
+  </div>
+
+  <div class="mb-3">
+
+    <%= form.label :answer %>
+      <%= form.text_field :open ,class:"form-control", placeholder: "answer" %>
+  </div>
+
+<% end %>
