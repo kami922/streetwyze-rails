@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
 
   post "asset", to: "main#create"
+  # get ":id/edit", to: "main#edit" , as: :editAsset
+  # post "editAsset", to: "main#update"
+  resources :assets
+  # get "asset/:id/edit", to: "asset#edit" ,as: :edit_asset
 
   root to: "main#index"
 
