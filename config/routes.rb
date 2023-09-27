@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
+  devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  get "signup", to: "registrations#new"
-  post "signup", to: "registrations#create"
+  # get "signup", to: "registrations#new"
+  # post "signup", to: "registrations#create"
 
-  get "signin", to: "sessions#new"
-  post "signin", to: "sessions#create"
+  # get "signin", to: "sessions#new"
+  # post "signin", to: "sessions#create"
 
-  get "password", to: "profiles#edit" ,as: :edit_password
-  patch "password", to: "profiles#update"
+  # get "password", to: "profiles#edit" ,as: :edit_password
+  # patch "password", to: "profiles#update"
 
   get "survey", to: "surveys#new"
   post "survey", to: "surveys#create"
@@ -17,14 +18,14 @@ Rails.application.routes.draw do
 
   delete "logout", to: "sessions#destroy"
 
+  resources :posts do
+    collection do
+      get :filter
+    end
+  end
 
-  post "asset", to: "main#create"
-  # get ":id/edit", to: "main#edit" , as: :editAsset
-  # post "editAsset", to: "main#update"
-  resources :assets
-  # get "asset/:id/edit", to: "asset#edit" ,as: :edit_asset
 
-  root to: "main#index"
+  root to: "posts#index"
 
 end
 

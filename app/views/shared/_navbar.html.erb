@@ -23,25 +23,22 @@
             <li><a class="dropdown-item" href="#">Survey Results</a></li>
           </ul>
         </li>
-         <% if Current.user %>
-          <li class="nav-item mx-3 mt-2 fw-bold">
-            Logged in as: <%= Current.user.username %>
-      </li>
-        <%= button_to "Log out", logout_path, method: :delete , class:"btn btn-primary"%>
+         <% if user_signed_in? %>
+        <%= button_to "Log out", destroy_user_session_path, method: :delete , class:"btn btn-primary"%>
 
-          <%= link_to "Profile", edit_password_path , class:"nav-link active"%>
+          <%= link_to "Profile", edit_user_registration_path , class:"nav-link active"%>
         <% else %>
 
         <li class="nav-item">
           <%# <a class="nav-link" href="#">Link</a> %>
-          <%= link_to "Sign in", signin_path ,class:'nav-link active'%>
+          <%= link_to "Sign in", new_user_session_path ,class:'nav-link active'%>
         </li>
         <li class="nav-item">
 
         </li>
         <li class="nav-item">
           <%# <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> %>
-          <%= link_to "Sign up",signup_path, class:"nav-link active" %>
+          <%= link_to "Sign up",new_user_registration_path, class:"nav-link active" %>
         </li>
       <% end %>
       </ul>
