@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   delete "logout", to: "sessions#destroy"
 
+
+
   resources :posts do
     collection do
       get :filter

@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     @allAssets = Post.all
     @asset = Post.new
     if current_user
-      flash[:notice] = "please check the survey"
+      flash[:alert] = "please check the survey"
     end
   end
 
@@ -23,22 +23,21 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @asset = Post.find_by(params[:id])
-    # authorize @asset
-    puts "asset: " + (@asset.user.id).to_s
-    puts "current user: " + (Current.user.id).to_s
-    if @asset.user.id != Current.user.id
-      flash[:notice] = "You are not authorized to edit this asset."
-      # redirect_to assets_path
-      puts "from assets edit function"
+    @asset = Post.find(params[:id])
+    authorize @asset
+
+    if @asset.present?
+      render :edit
     else
-      puts "else path"
+      flash[:alert] = "Asset not found."
+      redirect_to root_path
     end
   end
 
+
   def update
     @asset = Post.find(params[:id])
-    if @asset.user == Current.user
+    if @asset.user.id == current_user.id
       if @asset.update(asset_params)
         redirect_to @asset, notice: "Asset updated successfully."
       else
@@ -53,11 +52,10 @@ class PostsController < ApplicationController
   def destroy
     @asset = Post.find(params[:id])
     authorize @asset
-    if @asset.user == current_user
-      @asset.destroy
+    if @asset.destroy
       redirect_to root_path, notice: "Asset deleted successfully."
     else
-      flash[:alert] = "You are not authorized to delete this asset."
+      flash[:alert] = "Failed to delete the asset."
       redirect_to root_path
     end
   end
@@ -90,3 +88,5 @@ class PostsController < ApplicationController
     # params.permit(:place_name, :address, :stuff, :category, :rating, :description, files: [], user_attributes: [:id] )
   end
 end
+
+

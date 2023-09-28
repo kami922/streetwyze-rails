@@ -1,10 +1,10 @@
 class PostPolicy < ApplicationPolicy
   def edit?
-    user == record.user
+    user.id == record.user.id
   end
 
   def destroy?
-   user == record.user
+   user.id == record.user.id
   end
 
 
