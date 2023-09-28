@@ -23,11 +23,11 @@
 <% end %>
 
 
-<% if @allAssets.present? %>
+<% if @all_assets.present? %>
 
 <!-- Display filtered posts here -->
 <div id="filtered-posts">
-  <% @allAssets.each do |post| %>
+  <% @all_assets.each do |post| %>
     <!-- Render post details -->
   <% end %>
 </div>
@@ -117,7 +117,7 @@
 <!-- show all assets-->
 
 <div class="container">
-<% @allAssets.each do |asset| %>
+<% @all_assets.each do |asset| %>
   <div class="card my-3" style="width: 35rem; height: 35:rem ">
     <div class="card-body">
       <h5 class="card-title"><%= asset.place_name %></h5>

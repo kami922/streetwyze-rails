@@ -7,12 +7,11 @@ class SurveysController < ApplicationController
   def create
     @survey = Survey.new(survey_params)
     if @survey.save
-        redirect_to survey_path, notice: "created successfully"
+      redirect_to survey_path, notice: 'created successfully'
     else
-      render :new , alert: "something went wrong try again"
+      render :new, alert: 'something went wrong try again'
     end
   end
-
 
   def new_release
     respond_to do |format|
@@ -21,13 +20,9 @@ class SurveysController < ApplicationController
     end
   end
 
-
   private
+
   def survey_params
-    params.require(:survey).permit(:title, :script, question_attributes: [:id, :statement, :open, question_ids: [] ])
+    params.require(:survey).permit(:title, :script, question_attributes: [:id, :statement, :open, { question_ids: [] }])
   end
-
-
 end
-
-
