@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# auto generated using pundit which is base class for other policy classes
 class ApplicationPolicy
   attr_reader :user, :record
 
@@ -36,6 +37,7 @@ class ApplicationPolicy
     false
   end
 
+  # user represents current user and scope represents records
   class Scope
     def initialize(user, scope)
       @user = user

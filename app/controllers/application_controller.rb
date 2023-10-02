@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+# base controller class from which other controller classes inhert from
+# right now it contains sessions authentication logic will delete later also contains pundit authorizations
 class ApplicationController < ActionController::Base
   before_action :set_current_user
   # include Pundit

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Surveys Controller for handling survey and questions
 class SurveysController < ApplicationController
   def new
     @survey = Survey.new
