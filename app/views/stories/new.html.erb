@@ -1,0 +1,54 @@
+<h1> new page of story </h1>
+<div>form starting <div>
+<div class="container">
+<%= form_for [@post,@story] do |f| %>
+
+        <div class="my-3">
+        <%= f.label :place_name %>
+        <%= f.text_field :place_name , placeholder:"Enter place name" ,class:"form-control", disabled: true %>
+        </div>
+
+        <div class="my-3">
+          <%= f.label :address %>
+          <%= f.text_field :address ,placeholder:"Enter address",class:"form-control", disabled: true %>
+        </div>
+
+        <!-- type of stuff radio button -->
+         <div class="my-3">
+          <p>I would like to share:</p>
+          <%= f.radio_button :stuff, "Good" %>
+          <%= f.label :stuff, "Good" %><br>
+          <%= f.radio_button :stuff, "Fix" %>
+          <%= f.label :stuff, "Fix" %><br>
+          <%= f.radio_button :stuff, "Bad" %>
+          <%= f.label :stuff, "Bad" %>
+        </div>
+
+        <!-- rating integer field scale 1 to 5 -->
+         <div class="my-3">
+          <%= f.label :rating %>
+          <%= f.select :rating, (1..5), { include_blank: "Select a rating" }, class: "form-control" %>
+        </div>
+
+        <div class="my-3">
+          <%= f.label :category %>
+          <%= f.select :category, ["Art", "Business", "Child Care", "Education", "Environment", "Food", "Health", "Housing", "Industry", "Safety", "Transportation"], { include_blank: "Select a category" }, class: "form-control" %>
+        </div>
+
+        <div class="my-3">
+          <%= f.label :description %>
+          <%= f.text_area :description,class:"form-control" %>
+        </div>
+
+        <div class="my-3">
+          <%= f.label :Media %>
+          <%= f.file_field :files, multiple: true , class:"form-control"%>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <div class="my-3">
+          <%= f.submit "submit", class:"btn btn-primary" %>
+        </div>
+      <% end %>
+</div>

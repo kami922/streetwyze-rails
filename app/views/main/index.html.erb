@@ -1,7 +1,4 @@
-<% if flash[:notice] %>
-  <%= flash[:notice] %>
-<% end %>
-<%= Current.user.nil? %>
+<h1> main index page </h1>
 
 <!-- this is to create new assets -->
 
@@ -11,9 +8,37 @@
   Create Asset
 </button>
 
+<!-- app/views/posts/index.html.erb -->
+
+<!-- Filter form -->
+<%= form_tag(filter_posts_path, method: :get, remote: true) do %>
+  <div class="form-group">
+    <%= label_tag :place_name %>
+    <%= text_field_tag :place_name %>
+  </div>
+  <!-- Add similar input fields for other filter criteria -->
+  <div class="form-group">
+    <%= submit_tag "Filter", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+
+<% if @all_assets.present? %>
+
+<!-- Display filtered posts here -->
+<div id="filtered-posts">
+  <% @all_assets.each do |post| %>
+    <!-- Render post details -->
+  <% end %>
+</div>
+
+<% end %>
+
+
+
 <!-- Filter-->
 <div class="container">
-  <% form_with model:@asset_filter, url: post_path do |f|%>
+  <% form_with model:@asset_filter, url: posts_path, method: :post do |f|%>
         <div class="my-3">
           <%= f.label :category %>
           <%= f.select :category, ["Art", "Business", "Child Care", "Education", "Environment", "Food", "Health", "Housing", "Industry", "Safety", "Transportation"], { include_blank: "Select a category" }, class: "form-control" %>
@@ -24,6 +49,7 @@
 
 
 </div>
+<%  %>
 <!-- Asset  Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -33,7 +59,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
       </div>
       <div class="modal-body">
-        <%= form_with model: @asset, url: post_path do |f| %>
+        <%= form_for @asset, url: posts_path do |f| %>
 
         <div class="my-3">
         <%= f.label :place_name %>
@@ -89,9 +115,9 @@
 </div>
 
 <!-- show all assets-->
-<% if @allAssets.present? %>
+
 <div class="container">
-<% @allAssets.each do |asset| %>
+<% @all_assets.each do |asset| %>
   <div class="card my-3" style="width: 35rem; height: 35:rem ">
     <div class="card-body">
       <h5 class="card-title"><%= asset.place_name %></h5>
@@ -117,13 +143,12 @@
 
       <% end %>
        <%= link_to "Edit", edit_post_path(asset.id), class: "btn btn-primary" %>
-          <%= link_to post_url(id: asset.id), method: :destroy, class: "my-3 btn btn-danger" do %>
-            Delete
-          <% end %>
-      <a href="#" class="btn btn-primary my-2 " style="display:block">Share story</a>
+       <%= button_to "Delete", post_path(asset), method: :delete, class: "my-3 btn btn-danger" %>
+     <%= link_to "Share story", new_post_story_path(asset), class: "btn btn-primary my-2", style: "display:block" %>
       <%#= link_to "Edit", edit_asset_path(), class: "nav-link active" %>
     </div>
   </div>
 <% end %>
 </div>
-<% end %>
+
+

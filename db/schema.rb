@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_27_080635) do
+ActiveRecord::Schema.define(version: 2023_10_03_132957) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -55,6 +55,21 @@ ActiveRecord::Schema.define(version: 2023_09_27_080635) do
     t.index ["survey_id"], name: "index_questions_on_survey_id"
   end
 
+  create_table "stories", force: :cascade do |t|
+    t.text "description"
+    t.integer "rating"
+    t.string "place_name"
+    t.string "address"
+    t.string "stuff"
+    t.string "category"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.integer "post_id"
+    t.index ["post_id"], name: "index_stories_on_post_id"
+    t.index ["user_id"], name: "index_stories_on_user_id"
+  end
+
   create_table "surveys", force: :cascade do |t|
     t.string "title"
     t.string "script"
@@ -79,4 +94,6 @@ ActiveRecord::Schema.define(version: 2023_09_27_080635) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "posts", "users"
   add_foreign_key "questions", "surveys"
+  add_foreign_key "stories", "posts"
+  add_foreign_key "stories", "users"
 end

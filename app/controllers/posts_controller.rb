@@ -7,14 +7,6 @@ class PostsController < ApplicationController
   include Filterable
   include Authorizeable
   include FlashMessages
-  include Indexfilter
-
-  def index
-    @asset_filter = index_filter_assets(Post.first)
-    @all_assets = Post.all
-    @asset = Post.new
-    set_index_flash_notice
-  end
 
   def create
     puts params

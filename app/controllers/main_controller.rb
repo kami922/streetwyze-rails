@@ -3,6 +3,11 @@
 # First show all assets and stories then filter
 class MainController < ApplicationController
   before_action :authenticate_user!, except: %i[index]
+  include Filterable
+  include Authorizeable
+  include FlashMessages
+  include Indexfilter
+
   def index
     @asset_filter = index_filter_assets(Post.first)
     @all_assets = Post.all
@@ -10,16 +15,16 @@ class MainController < ApplicationController
     set_index_flash_notice
   end
 
-  def create
-    puts params
-    @asset = Current.user.posts.build(post_params)
-    if @asset.save
-      redirect_to root_path, notice: 'created successfully'
-    else
-      puts @asset.errors.full_messages
-      render :new, notice: 'something went wrong'
-    end
-  end
+  # def create
+  #   puts params
+  #   @asset = Current.user.posts.build(post_params)
+  #   if @asset.save
+  #     redirect_to root_path, notice: 'created successfully'
+  #   else
+  #     puts @asset.errors.full_messages
+  #     render :new, notice: 'something went wrong'
+  #   end
+  # end
 
   private
 
