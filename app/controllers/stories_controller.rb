@@ -1,12 +1,19 @@
 # frozen_string_literal: true
 
-# Story controller to handle creating of story
+# Story controller to handle creation of story
 class StoriesController < ApplicationController
   before_action :authenticate_user!
 
   def new
     @post = Post.find(params[:post_id])
     @story = @post.stories.new(place_name: @post.place_name, address: @post.address)
+  end
+
+  def export
+    @stories = Story.all
+    respond_to do |format|
+      format.csv { send_data @stories.to_csv, filename: "all_stories-#{Date.today}.csv" }
+    end
   end
 
   def create

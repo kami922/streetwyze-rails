@@ -22,6 +22,12 @@ Rails.application.routes.draw do
     resources :stories, only: [:new, :create] # Nested routes for stories under posts
   end
 
+  resources :stories, only: [] do
+    collection do
+      get :export, format: :csv
+    end
+  end
+
 
 
   root to: "main#index"

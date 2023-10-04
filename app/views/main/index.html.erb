@@ -4,8 +4,8 @@
 
 <!-- Button trigger modal -->
 <div class="container">
-<button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Create Asset
+  <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Create Asset
 </button>
 
 <!-- app/views/posts/index.html.erb -->
@@ -23,6 +23,12 @@
 <% end %>
 
 
+<!--download csv -->
+<%= link_to "Export List CSV", export_stories_path(format: :csv), class: "btn btn-primary my-2 " %>
+
+
+
+
 <% if @all_assets.present? %>
 
 <!-- Display filtered posts here -->
@@ -33,8 +39,6 @@
 </div>
 
 <% end %>
-
-
 
 <!-- Filter-->
 <div class="container">
@@ -47,9 +51,8 @@
 </div>
 
 
-
 </div>
-<%  %>
+
 <!-- Asset  Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -150,5 +153,3 @@
   </div>
 <% end %>
 </div>
-
-
