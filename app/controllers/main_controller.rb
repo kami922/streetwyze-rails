@@ -3,29 +3,17 @@
 # First show all assets and stories then filter
 class MainController < ApplicationController
   before_action :authenticate_user!, except: %i[index]
-  include Filterable
   include Authorizeable
   include FlashMessages
   include Indexfilter
 
   def index
-    @asset_filter = index_filter_assets(Post.first)
-    @all_assets = Post.all
+    @all_assets = fetch_assets_or_stories(params[:type])
+    @all_assets = apply_filters(@all_assets)
     @asset = Post.new
-    @story = Story.all
+    @story = Story.new
     set_index_flash_notice
   end
-
-  # def create
-  #   puts params
-  #   @asset = Current.user.posts.build(post_params)
-  #   if @asset.save
-  #     redirect_to root_path, notice: 'created successfully'
-  #   else
-  #     puts @asset.errors.full_messages
-  #     render :new, notice: 'something went wrong'
-  #   end
-  # end
 
   private
 
@@ -42,20 +30,17 @@ class MainController < ApplicationController
     )
   end
 
-  def index_filter_assets(first_asset)
-    return Post.all unless first_asset
+  def fetch_assets_or_stories(type)
+    assets = Post.all
+    stories = Story.all
 
-    Post.where(
-      place_name: first_asset.place_name,
-      address: first_asset.address,
-      stuff: first_asset.stuff,
-      category: first_asset.category,
-      rating: first_asset.rating,
-      description: first_asset.description
-    )
-  end
-
-  def set_index_flash_notice
-    flash[:alert] = 'Please check the survey' if current_user.present?
+    case type
+    when 'assets'
+      assets
+    when 'stories'
+      stories
+    else
+      assets
+    end
   end
 end

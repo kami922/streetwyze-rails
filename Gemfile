@@ -79,3 +79,7 @@ gem 'pundit', '~> 2.3'
 gem 'devise', '~> 4.9'
 
 gem 'rubocop', require: false
+
+gem 'ransack'
+
+gem 'pg_search'

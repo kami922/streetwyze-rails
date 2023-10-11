@@ -2,31 +2,34 @@
 
 <!-- this is to create new assets -->
 
+
+
+
+<!-- selection asset or story -->
+<div class="container">
+<%= link_to "Assets", assets_path, class: "btn btn-primary", id: "assets-btn" %>
+<%= link_to "Stories", stories_path, class: "btn btn-primary", id: "stories-btn" %>
+</div>
+
+
+<!--download csv -->
+<div class="container">
+<%= link_to "download CSV", export_stories_path(format: :csv), class: "btn btn-primary my-2 " %>
+</div>
+
+
+<!-- filter form -->
+<div class="container">
+<%= render partial:"filter_form" %>
+</div>
+
+
 <!-- Button trigger modal -->
 <div class="container">
   <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Create Asset
 </button>
-
-<!-- app/views/posts/index.html.erb -->
-
-<!-- Filter form -->
-<%= form_tag(filter_posts_path, method: :get, remote: true) do %>
-  <div class="form-group">
-    <%= label_tag :place_name %>
-    <%= text_field_tag :place_name %>
-  </div>
-  <!-- Add similar input fields for other filter criteria -->
-  <div class="form-group">
-    <%= submit_tag "Filter", class: "btn btn-primary" %>
-  </div>
-<% end %>
-
-
-<!--download csv -->
-<%= link_to "Export List CSV", export_stories_path(format: :csv), class: "btn btn-primary my-2 " %>
-
-
+</div>
 
 
 <% if @all_assets.present? %>
@@ -40,15 +43,6 @@
 
 <% end %>
 
-<!-- Filter-->
-<div class="container">
-  <% form_with model:@asset_filter, url: posts_path, method: :post do |f|%>
-        <div class="my-3">
-          <%= f.label :category %>
-          <%= f.select :category, ["Art", "Business", "Child Care", "Education", "Environment", "Food", "Health", "Housing", "Industry", "Safety", "Transportation"], { include_blank: "Select a category" }, class: "form-control" %>
-        </div>
-  <% end %>
-</div>
 
 
 </div>

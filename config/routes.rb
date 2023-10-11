@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get "assets", to: "main#index", type: "assets"
+  get "stories", to: "main#index", type: "stories"
+  post "filter_main_index", to: "main#index", as: :filter_main_index
 
 
   root to: "main#index"

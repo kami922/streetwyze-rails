@@ -6,6 +6,7 @@ require 'csv'
 class Story < ApplicationRecord
   belongs_to :user
   belongs_to :post
+  has_many_attached :files
 
   def self.to_csv
     attributes = %w[id description rating place_name address stuff category created_at updated_at]

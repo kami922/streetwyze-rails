@@ -19,6 +19,8 @@ class StoriesController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @story = @post.stories.build(story_params)
+    @story.place_name = @post.place_name
+    @story.address = @post.address
     @story.user = current_user
     if @story.save
       redirect_to root_path, notice: 'Story shared successfully.'

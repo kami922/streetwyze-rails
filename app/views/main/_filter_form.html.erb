@@ -1,0 +1,43 @@
+<%= form_tag(filter_main_index_path, method: :post) do %>
+  <div class="my-3">
+    <%= label_tag :type, "Type" %>
+    <%= select_tag :filter_type, options_for_select(["Good", "Fix", "Bad"], params[:filter_type]), include_blank: "Select a type", class: "form-control" %>
+  </div>
+
+  <div class="my-3">
+    <%= label_tag :rating, "Rating" %>
+    <%= select_tag :filter_rating, options_for_select((1..5), params[:filter_rating]), include_blank: "Select a rating", class: "form-control" %>
+  </div>
+
+  <div class="my-3">
+    <%= label_tag :category, "Category" %>
+    <%= select_tag :filter_category, options_for_select(["Art", "Business", "Child Care", "Education", "Environment", "Food", "Health", "Housing", "Industry", "Safety", "Transportation"], params[:filter_category]), include_blank: "Select a category", class: "form-control" %>
+  </div>
+
+  <div class="my-3">
+    <%= label_tag :media, "Media" %>
+    <%= select_tag :filter_media, options_for_select(["All", "With Media", "Without Media"], params[:filter_media]), include_blank: "Select media", class: "form-control" %>
+  </div>
+
+  <div class="my-3">
+    <%= label_tag :author, "Author" %>
+    <%= select_tag :filter_author, options_for_select(User.all.map { |user| [user.username, user.id] }, params[:filter_author]), include_blank: "Select an author", class: "form-control" %>
+  </div>
+
+  <div class="my-3">
+  <%= label_tag :date_range, "Date Created" %>
+  <%= select_tag :filter_date_range, options_for_select(["All", "Today", "Yesterday", "Last 7 days", "Last 30 days", "This Month", "Last Month", "Custom Range"], params[:filter_date_range]), include_blank: "Select a date range", class: "form-control" %>
+</div>
+
+<div class="my-3" id="custom-date-range" style="display: none;">
+  <%= label_tag :start_date, "Start Date" %>
+  <%= text_field_tag :start_date, params[:start_date], class: "form-control" %>
+
+  <%= label_tag :end_date, "End Date" %>
+  <%= text_field_tag :end_date, params[:end_date], class: "form-control" %>
+</div>
+
+  <div class="my-3">
+    <%= submit_tag "Filter", class: "btn btn-primary" %>
+  </div>
+<% end %>

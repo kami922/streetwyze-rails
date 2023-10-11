@@ -8,6 +8,10 @@ class PostsController < ApplicationController
   include Authorizeable
   include FlashMessages
 
+  def index
+    Post.all
+  end
+
   def create
     puts params
     @asset = current_user.posts.build(post_params)
