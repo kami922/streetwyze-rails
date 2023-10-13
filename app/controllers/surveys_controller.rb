@@ -10,7 +10,7 @@ class SurveysController < ApplicationController
   def create
     @survey = Survey.new(survey_params)
     if @survey.save
-      redirect_to survey_path, notice: 'created successfully'
+      redirect_to survey_path(@survey), notice: 'created successfully'
     else
       render :new, alert: 'something went wrong try again'
     end

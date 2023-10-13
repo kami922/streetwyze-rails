@@ -24,12 +24,6 @@
 </div>
 
 
-<!-- Button trigger modal -->
-<div class="container">
-  <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Create Asset
-</button>
-</div>
 
 
 <% if @all_assets.present? %>
@@ -46,6 +40,15 @@
 
 
 </div>
+
+
+<!-- Button trigger modal -->
+<div class="container">
+  <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Create Asset
+</button>
+</div>
+
 
 <!-- Asset  Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

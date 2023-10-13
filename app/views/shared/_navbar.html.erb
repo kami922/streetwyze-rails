@@ -19,7 +19,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%# <li><a class="dropdown-item" href="#">Create Survey</a></li> %>
-            <%= link_to "Create Survey" , survey_path, class:"dropdown-item" %>
+            <%= link_to "Create Survey" , new_survey_path, class:"dropdown-item" %>
             <li><a class="dropdown-item" href="#">Survey Results</a></li>
           </ul>
         </li>
@@ -28,8 +28,6 @@
              <p class="mx-2 my-2"> UserName</p><li class="nav-item mx-2 my-2"> <%= current_user.username %> </li>
           <%= link_to "Profile", edit_user_registration_path , class:"nav-link active"%>
         <% else %>
-
-
 
         <li class="nav-item">
           <%# <a class="nav-link" href="#">Link</a> %>
